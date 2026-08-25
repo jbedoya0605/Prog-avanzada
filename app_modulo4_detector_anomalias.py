@@ -106,10 +106,13 @@ with tab2:
     ax2.plot(n_valores, np.ones_like(n_valores), label="O(1) — constante")
     ax2.plot(n_valores, n_valores, label="O(n) — lineal (nuestro detector)")
     ax2.plot(n_valores, n_valores * np.log2(np.maximum(n_valores, 2)), label="O(n log n)")
-  ax2.plot(n_valores, n_valores ** 2, label="O(n²) — cuadrática")
-  ax2.plot(n_valores, n_valores ** 3, label="O(n³) — cúbica")
-  ax2.plot(n_valores, 2.0 ** n_valores, label="O(2ⁿ) — exponencial")
-    
+    ax2.plot(n_valores, n_valores ** 2, label="O(n²) — cuadrática")
+    ax2.plot(n_valores, n_valores ** 3, label="O(n³) — cúbica")
+    ax2.plot(n_valores, 2.0 ** n_valores, label="O(2ⁿ) — exponencial")
+
+    # Ajuste de escala vertical para evitar que O(2ⁿ) aplaste a las demás curvas
+    ax2.set_ylim(0, np.max(n_valores ** 3) * 1.2)
+
     ax2.set_xlabel("Tamaño de los datos (n)")
     ax2.set_ylabel("Operaciones (teórico)")
     ax2.legend()
@@ -121,7 +124,6 @@ with tab2:
         "la notación no cambia. Lo que cambia es la **constante** detrás de cada operación, "
         "y eso es justo lo que exploras en la siguiente pestaña."
     )
-
 
 # ---------------------------------------------------------------------------
 # Tab 3: Benchmark en vivo
